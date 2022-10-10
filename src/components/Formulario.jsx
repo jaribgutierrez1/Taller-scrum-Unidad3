@@ -36,9 +36,28 @@ const Formulario = () => {
     }
     const guardarclientes = async (e) =>{
         e.preventDefault()
-        
+        if(!nombre.trim()){
+            alert('Ingrese el Nombre')
+            return
+        }
+        if(!apellidos.trim()){
+            alert ('Ingrese el Apellido')
+            return
+        }    
+        if(!edad.trim()){
+            alert ('Ingrese la Edad')
+            return
+        }
+        if(!telefono.trim()){
+            alert ('Ingrese el numero de Teléfono')
+            return
+        }
+        if(!email.trim()){
+            alert ('Ingrese el Email')
+            return
+        }
         try{
-
+        
             const data = await addDoc(collection(db,'form'),{
                 
                 nombrenombre: nombre,
@@ -75,7 +94,7 @@ const Formulario = () => {
                     {
                         lista.map(item =>(
                             <li className='list-group-item' key={item.id}>
-                                <span className='lead'>{item.nombrenombre}  {item.nombreapellidos}  {item.nombreedad}    {item.nombretelefono}  {item.nombreemail}</span>
+                                <span className='lead'>{item.nombrenombre}  |  {item.nombreapellidos}  |  {item.nombreedad} años  |  {item.nombretelefono}  |  {item.nombreemail}</span>
                                 <button className='btn btn-danger btn-sm float-end mx-2' onClick={()=>eliminar(item.id)}>Eliminar</button>
                             </li>
                         ))
